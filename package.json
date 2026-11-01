@@ -15,23 +15,32 @@
     "dev:server": "tsx watch app/server.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build:server": "tsc -p tsconfig.json",
-    "build": "npm run build:server && npm run build --workspace frontend"
+    "build": "npm run build:server && npm run build --workspace frontend",
+    "prepare": "node .husky/install.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tw-research/PortfolioV3.git"
+    "url": "git+https://github.com/tw-research/portfoliov3.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tw-research/PortfolioV3/issues"
+    "url": "https://github.com/tw-research/portfoliov3/issues"
   },
-  "homepage": "https://github.com/tw-research/PortfolioV3#readme",
+  "homepage": "https://github.com/tw-research/portfoliov3#readme",
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.6",
+    "drizzle-kit": "^0.31.11",
     "prettier": "3.9.10",
     "tsx": "^4.23.15",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.4"
   }
 }
