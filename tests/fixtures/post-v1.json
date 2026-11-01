@@ -1,0 +1,28 @@
+{
+  "format": "tiptap",
+  "version": 1,
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": { "level": 1 },
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a sample post title that I have in my really cool portfolio!"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Wow, what an actually incredible and amazing post. You really learned a lot by looking at it!"
+          }
+        ]
+      }
+    ]
+  }
+}

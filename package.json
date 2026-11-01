@@ -11,7 +11,8 @@
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest run --watch",
     "dev:server": "tsx watch app/server.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build:server": "tsc -p tsconfig.json",
@@ -33,14 +34,19 @@
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.6",
     "drizzle-kit": "^0.31.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "prettier": "3.9.10",
     "tsx": "^4.23.15",
     "typescript": "~6.0.3",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.0"
+    "vitest": "^5.0.5"
   },
   "dependencies": {
+    "@tiptap/core": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
     "better-sqlite3": "^13.0.3",
-    "drizzle-orm": "^0.45.4"
+    "drizzle-orm": "^0.45.4",
+    "zod": "^4.6.7"
   }
 }
