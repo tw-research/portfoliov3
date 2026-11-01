@@ -1,0 +1,37 @@
+{
+  "name": "portfoliov3",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "frontend"
+  ],
+  "description": "The third iteration of my portfolio",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:server": "tsx watch app/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build:server": "tsc -p tsconfig.json",
+    "build": "npm run build:server && npm run build --workspace frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tw-research/PortfolioV3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tw-research/PortfolioV3/issues"
+  },
+  "homepage": "https://github.com/tw-research/PortfolioV3#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "prettier": "3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3"
+  }
+}
