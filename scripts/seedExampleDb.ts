@@ -21,10 +21,14 @@ db.transaction((tx) => {
   tx.insert(publishedPosts)
     .values({
       postID: "example-post",
-      title: "An example post",
-      summary: "A sample post for building the public page.",
-      authors: [{ name: "Thomas" }, { name: "Rhombus" }],
-      tags: ["example", "cool", "test", "demo"],
+      title: "Pizza With Gun",
+      summary: "A platformer with elementary procedural generation features",
+      authors: [
+        { name: "Thomas Wessel", url: "https://github.com/collectioncard" },
+        { name: "Jarod Spangler", url: "https://github.com/LifeHckr" },
+        { name: "Jack Wilhelm", url: "https://github.com/JackWilhelm" },
+      ],
+      tags: ["PCG", "Platformer", "2D", "Phaser"],
       postContent,
     })
     .onConflictDoNothing({ target: publishedPosts.postID })

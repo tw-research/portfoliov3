@@ -6,6 +6,7 @@ import { renderHomePage, renderPostPage } from "./rendering/Pages.js";
 import { renderPostContent } from "./rendering/postContent.js";
 import { renderSitemap } from "./rendering/sitemap.js";
 import { getHomeURL, getPostURLFromSlug } from "./urlGetter.js";
+import { serveStatic } from "@hono/node-server/serve-static";
 
 const app = new Hono({ strict: false });
 
@@ -53,12 +54,30 @@ app.get("/assets/post.css", (c) => {
   });
 });
 
+app.get("/assets/global.css", (c) => {
+  const css = readFileSync("shared/styles/global.css", "utf8");
+
+  return c.body(css, 200, {
+    "Content-Type": "text/css; charset=utf-8",
+  });
+});
+
+app.get("/assets/home.css", (c) => {
+  const css = readFileSync("shared/styles/home.css", "utf8");
+
+  return c.body(css, 200, {
+    "Content-Type": "text/css; charset=utf-8",
+  });
+});
+
 app.notFound((c) => {
   return c.text(
     "Hey, why are you looking over here? There's obviously no content\n\nAnyway, 404. You should just go back.",
     404,
   );
 });
+
+app.get("/assets/fonts/*", serveStatic({ root: "./public" }));
 
 serve(
   {

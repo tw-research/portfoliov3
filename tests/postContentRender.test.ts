@@ -11,11 +11,9 @@ describe("renderPostContent", () => {
   it("renders the saved document as HTML", () => {
     const html = renderToStaticMarkup(renderPostContent(fixture));
 
-    expect(html).toContain("<h1>");
+    expect(html).toContain("<h3>");
     expect(html).toContain("<p>");
-    expect(html).toContain(
-      "This is the first part of the post body, styled as a heading.",
-    );
+    expect(html).toContain("My Contributions:");
   });
 
   it("rejects an unsupported document version", () => {

@@ -20,10 +20,11 @@ export function renderPostPage(
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{props.metadata.title}</title>
+        <link rel="stylesheet" href="/assets/global.css" />
         <link rel="stylesheet" href="/assets/post.css" />
         <link rel="canonical" href={canonicalURL} />
       </head>
-      <body>
+      <body className="post-body">
         <PostPage {...props} />
       </body>
     </html>
@@ -41,25 +42,54 @@ export function renderHomePage(
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Portfolio</title>
-        <link rel="stylesheet" href="/assets/post.css" />
+        <title>Thomas Wessel</title>
+        <link rel="stylesheet" href="/assets/global.css" />
+        <link rel="stylesheet" href="/assets/home.css" />
         <link rel="canonical" href={canonicalURL} />
       </head>
-      <body>
-        <main className="post-page">
-          <h1>Portfolio</h1>
-          <ul>
-            {posts.map((post) => (
-              <li key={post.id}>
-                <h2>
-                  <a href={`/posts/${encodeURIComponent(post.slug)}`}>
-                    {post.title}
-                  </a>
-                </h2>
-                <p>{post.summary}</p>
-              </li>
-            ))}
-          </ul>
+      <body className="home-body">
+        <a className="skip-link" href="#projects">
+          Skip to projects
+        </a>
+        <main className="home-page">
+          <header className="home-intro">
+            <h1>Thomas Wessel</h1>
+            <p>
+              I make seemingly unrelated stuff that usually ends up being pretty
+              neat
+            </p>
+            <nav className="home-links" aria-label="Résumé and profiles">
+              <a href="https://docs.google.com/document/d/158I-peZDIZNFvw30WkYq4zKa8BadVcCwm4fJmsCpsjw/export?format=pdf">
+                Résumé
+              </a>
+              <a href="https://github.com/collectioncard">GitHub</a>
+            </nav>
+          </header>
+          <section
+            className="home-projects"
+            id="projects"
+            aria-labelledby="projects-heading"
+          >
+            <h2 id="projects-heading">
+              Take a look at some of the projects that I&apos;ve worked on
+            </h2>
+            {posts.length === 0 ? (
+              <p>No projects have been published yet.</p>
+            ) : (
+              <ul className="project-list">
+                {posts.map((post) => (
+                  <li key={post.id} className="project-card">
+                    <h3>
+                      <a href={`/posts/${encodeURIComponent(post.slug)}`}>
+                        {post.title}
+                      </a>
+                    </h3>
+                    <p>{post.summary}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
         </main>
       </body>
     </html>

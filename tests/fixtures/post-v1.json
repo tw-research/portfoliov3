@@ -5,12 +5,39 @@
     "type": "doc",
     "content": [
       {
-        "type": "heading",
-        "attrs": { "level": 1 },
+        "type": "paragraph",
         "content": [
           {
             "type": "text",
-            "text": "This is the first part of the post body, styled as a heading."
+            "text": "Pizza with Gun was my first large project within my undergraduate game design program at UCSC. Created with classmates Jarod Spangler and Jack Wilhelm for CMPM 120 with professor Jim Whitehead, the game is a platformer collectathon with procedurally placed rooms designed to make each playthough slightly different. Unbeknownst to us at the time, many of the techniques we used in this game are similar to the PCG methods used in "
+          },
+          {
+            "type": "text",
+            "text": "Spelunky",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://tinysubversions.com/spelunkyGen/"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", just significantly simplified. While this project was made in less than a week, it is what inspired me to work on other, more advanced procedural map generation techniques."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "My Contributions:"
           }
         ]
       },
@@ -19,7 +46,86 @@
         "content": [
           {
             "type": "text",
-            "text": "Wow, what an actually incredible and amazing post. You really learned a lot by looking at it!"
+            "text": "For this game, I primarily worked on level design, enemy programming, and other general game programming. I was also a co-developer on the level generation system."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "What I learned:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pathfinding Algorithms:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " This project was my first experience implementing a pathfinding algorithm, "
+                  },
+                  {
+                    "type": "text",
+                    "text": "A* in this case",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.redblobgames.com/pathfinding/a-star/introduction.html"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ", in a game. While the current implementation is functional, I now recognize a few areas where it could be optimized and refined with ideas I learned later in my education."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Procedural Content Generation:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " This was also my introduction to procedural content generation. We designed the level generation system entirely from scratch without referencing any other games. This project both taught me the basics of pcg and inspired me to take on more advanced pcg topics in future projects."
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
