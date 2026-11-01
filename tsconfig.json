@@ -8,7 +8,13 @@
     "rootDir": ".",
     "outDir": "dist",
     "skipLibCheck": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "jsx": "react-jsx"
   },
-  "include": ["app/**/*.ts", "shared/**/*.ts"]
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "shared/**/*.ts",
+    "shared/**/*.tsx"
+  ]
 }

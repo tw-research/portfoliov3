@@ -1,0 +1,4 @@
+.post-page {
+  width: min(100% - 2rem, 48rem);
+  margin: 4rem auto;
+}
