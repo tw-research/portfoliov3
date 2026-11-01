@@ -1,66 +1,71 @@
 import { readFileSync } from "node:fs";
-import { createServer } from "node:http";
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
 import { getPublishedPostBySlug, getPublishedPosts } from "./db/posts.js";
 import { renderHomePage, renderPostPage } from "./rendering/Pages.js";
 import { renderPostContent } from "./rendering/postContent.js";
 import { renderSitemap } from "./rendering/sitemap.js";
 import { getHomeURL, getPostURLFromSlug } from "./urlGetter.js";
 
-//TODO: swap over to a real router so I don't have to do this
-const server = createServer((request, response) => {
-  const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
+const app = new Hono({ strict: false });
 
-  if (request.method === "GET" && pathname === "/assets/post.css") {
-    const css = readFileSync("shared/styles/post.css", "utf8");
-    response.writeHead(200, { "Content-Type": "text/css; charset=utf-8" });
-    response.end(css);
-    return;
+app.get("/", (c) => {
+  return c.html(renderHomePage(getPublishedPosts(), getHomeURL()));
+});
+
+app.get("/posts/:slug", (c) => {
+  const slug = c.req.param("slug");
+
+  if (!/^[a-z0-9-]+$/.test(slug)) {
+    return c.notFound();
   }
 
-  const postRoute = new RegExp(/^\/posts\/([a-z0-9-]+)\/?$/).exec(pathname);
+  const result = getPublishedPostBySlug(slug);
 
-  if (request.method === "GET" && pathname === "/") {
-    const html = renderHomePage(getPublishedPosts(), getHomeURL());
-
-    response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    response.end(html);
-    return;
+  if (!result) {
+    return c.notFound();
   }
 
-  if (request.method === "GET" && postRoute) {
-    const result = getPublishedPostBySlug(postRoute[1]);
-
-    if (result) {
-      const html = renderPostPage(
-        {
-          metadata: result.published,
-          children: renderPostContent(result.published.postContent),
-        },
-        getPostURLFromSlug(result.slug),
-      );
-
-      response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-      response.end(html);
-      return;
-    }
-  }
-
-  if (request.method === "GET" && pathname === "/sitemap.xml") {
-    const slugs = getPublishedPosts().map((post) => post.slug);
-
-    response.writeHead(200, {
-      "Content-Type": "application/xml; charset=utf-8",
-    });
-    response.end(renderSitemap(slugs));
-    return;
-  }
-
-  response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-  response.end(
-    "Hey, why are you looking over here? There's obviously no content\n\nAnyway, 404. You should just go back.",
+  return c.html(
+    renderPostPage(
+      {
+        metadata: result.published,
+        children: renderPostContent(result.published.postContent),
+      },
+      getPostURLFromSlug(result.slug),
+    ),
   );
 });
 
-server.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+app.get("/sitemap.xml", (c) => {
+  const slugs = getPublishedPosts().map((post) => post.slug);
+
+  return c.body(renderSitemap(slugs), 200, {
+    "Content-Type": "application/xml; charset=utf-8",
+  });
 });
+
+app.get("/assets/post.css", (c) => {
+  const css = readFileSync("shared/styles/post.css", "utf8");
+
+  return c.body(css, 200, {
+    "Content-Type": "text/css; charset=utf-8",
+  });
+});
+
+app.notFound((c) => {
+  return c.text(
+    "Hey, why are you looking over here? There's obviously no content\n\nAnyway, 404. You should just go back.",
+    404,
+  );
+});
+
+serve(
+  {
+    fetch: app.fetch,
+    port: 3000,
+  },
+  (info) => {
+    console.log(`Server is running on http://localhost:${info.port}`);
+  },
+);
