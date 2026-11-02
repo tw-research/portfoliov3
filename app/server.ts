@@ -4,11 +4,13 @@ import { config } from "./config.js";
 import { registerAuthRoutes } from "./routes/auth.js";
 import { registerAdminRoutes } from "./routes/admin.js";
 import { registerPublicRoutes } from "./routes/public.js";
+import { registerPostRoutes } from "./routes/posts.js";
 
 const app = new Hono({ strict: false });
 
 registerAuthRoutes(app);
 registerAdminRoutes(app);
+registerPostRoutes(app);
 registerPublicRoutes(app);
 
 app.notFound((c) => {

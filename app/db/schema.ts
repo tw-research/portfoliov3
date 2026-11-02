@@ -11,6 +11,7 @@ export const postDrafts = sqliteTable("post_drafts", {
   postID: text("post_id")
     .primaryKey()
     .references(() => posts.id),
+  revision: integer("revision").notNull().default(0),
   title: text("title").notNull(),
   summary: text("summary").notNull(),
   authors: text("authors", { mode: "json" })

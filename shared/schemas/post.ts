@@ -1,5 +1,6 @@
 //Schema for blog post metadata.
 import { z } from "zod";
+import { PostContentSchema } from "./postContent.js";
 
 export const AuthorSchema = z.object({
   name: z.string(),
@@ -16,4 +17,10 @@ export const PostMetadataSchema = z.object({
   summary: z.string(),
 });
 
+export const PostSchema = z.object({
+  metadata: PostMetadataSchema,
+  content: PostContentSchema,
+});
+
 export type PostMetadata = z.infer<typeof PostMetadataSchema>;
+export type Post = z.infer<typeof PostSchema>;

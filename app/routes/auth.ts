@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { requireSameOrigin } from "../auth/middleware/requireSameOrigin.js";
 import * as oidc from "openid-client";
 import { config } from "../config.js";
 import {
@@ -99,20 +100,8 @@ export function registerAuthRoutes(app: Hono): void {
     }
   });
 
-  // Require a same-origin request before revoking a session.
-  app.post("/auth/logout", (c) => {
+  app.post("/auth/logout", requireSameOrigin, (c) => {
     c.header("Cache-Control", "no-store");
-    const origin = c.req.header("Origin");
-    const referer = c.req.header("Referer");
-    let requestOrigin = origin;
-    if (!requestOrigin && referer) {
-      try {
-        requestOrigin = new URL(referer).origin;
-      } catch {
-        requestOrigin = undefined;
-      }
-    }
-    if (requestOrigin !== config.PUBLIC_ORIGIN) return c.text("Forbidden", 403);
     const token = getSessionCookie(c);
     if (token) revokeSession(token);
     clearSessionCookie(c);
