@@ -1,3 +1,10 @@
+CREATE TABLE `oidc_login_attempts` (
+	`state_hash` text PRIMARY KEY NOT NULL,
+	`nonce` text NOT NULL,
+	`code_verifier` text NOT NULL,
+	`expires_at` integer NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `post_drafts` (
 	`post_id` text PRIMARY KEY NOT NULL,
 	`title` text NOT NULL,

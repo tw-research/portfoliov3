@@ -1,9 +1,47 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "1a6b804d-45ce-4797-bbd3-c9df711377d4",
+  "id": "10a08941-9444-4fe4-8c50-6c6b75dffa03",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "oidc_login_attempts": {
+      "name": "oidc_login_attempts",
+      "columns": {
+        "state_hash": {
+          "name": "state_hash",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nonce": {
+          "name": "nonce",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "code_verifier": {
+          "name": "code_verifier",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "post_drafts": {
       "name": "post_drafts",
       "columns": {

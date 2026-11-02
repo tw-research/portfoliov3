@@ -31,7 +31,6 @@ const ConfigSchema = z
     AUTHENTIK_CLIENT_ID: z.string().optional(),
     AUTHENTIK_ISSUER: z.string().optional(),
     AUTHENTIK_CLIENT_SECRET: z.string().optional(),
-    AUTHENTIK_OWNER_SUBJECT: z.string().optional(),
   })
   .superRefine((values, ctx) => {
     const production = values.NODE_ENV === "production";
@@ -57,7 +56,6 @@ const ConfigSchema = z
         "AUTHENTIK_ISSUER",
         "AUTHENTIK_CLIENT_ID",
         "AUTHENTIK_CLIENT_SECRET",
-        "AUTHENTIK_OWNER_SUBJECT",
       ] as const;
 
       for (const name of requiredSettings) {

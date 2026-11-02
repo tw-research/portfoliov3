@@ -15,6 +15,7 @@
     "app/**/*.ts",
     "app/**/*.tsx",
     "shared/**/*.ts",
-    "shared/**/*.tsx"
+    "shared/**/*.tsx",
+    "scripts/invalidateRestoredSessions.ts"
   ]
 }
