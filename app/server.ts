@@ -1,11 +1,12 @@
 import { readFileSync } from "node:fs";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { config } from "./config.js";
 import { getPublishedPostBySlug, getPublishedPosts } from "./db/posts.js";
 import { renderHomePage, renderPostPage } from "./rendering/Pages.js";
 import { renderPostContent } from "./rendering/postContent.js";
 import { renderSitemap } from "./rendering/sitemap.js";
-import { getHomeURL, getPostURLFromSlug } from "./urlGetter.js";
+import { getHomeURL, getPostURLFromSlug } from "./utils/urlGetter.js";
 import { serveStatic } from "@hono/node-server/serve-static";
 
 const app = new Hono({ strict: false });
@@ -82,7 +83,7 @@ app.get("/assets/fonts/*", serveStatic({ root: "./public" }));
 serve(
   {
     fetch: app.fetch,
-    port: 3000,
+    port: config.PORT,
   },
   (info) => {
     console.log(`Server is running on http://localhost:${info.port}`);

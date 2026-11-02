@@ -13,7 +13,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest run --watch",
-    "dev:server": "tsx watch app/server.ts",
+    "dev:server": "NODE_ENV=development tsx watch app/server.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build:server": "tsc -p tsconfig.json",
     "build": "npm run build:server && npm run build --workspace frontend",

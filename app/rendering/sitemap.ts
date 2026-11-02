@@ -1,4 +1,4 @@
-import { getHomeURL, getPostURLFromSlug } from "../urlGetter.js";
+import { getHomeURL, getPostURLFromSlug } from "../utils/urlGetter.js";
 
 function escapeXml(value: string): string {
   return value
