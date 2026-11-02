@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1793555060809,
-      "tag": "0000_greedy_pestilence",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1793566587613,
-      "tag": "0001_productive_ben_parker",
+      "when": 1793591326895,
+      "tag": "0000_giant_glorian",
       "breakpoints": true
     }
   ]
